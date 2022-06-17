@@ -44,10 +44,24 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Rotas
 app.get('/', (req, res) => {
     Postagem.find().populate('categoria').lean().sort({ data: 'desc' }).then((postagens) => {
-        res.render('index', {postagens: postagens})
+        res.render('index', { postagens: postagens })
     }).catch((err) => {
         req.flash('error_msg', 'Houve um erro interno')
         res.redirect('/404')
+    })
+})
+
+app.get('/postagem/:slug', (req, res) => {
+    Postagem.findOne({ slug: req.params.slug }).lean().then((postagem) => {
+        if (postagem) {
+            res.render('postagem/index', {postagem: postagem})
+        } else {
+            req.flash('error_msg', 'Esta postagem não existe')
+            res.redirect('/')
+        }
+    }).catch((erro) => {
+        res.flash('error_msg', 'Houve um erro interno')
+        res.redirect('/')
     })
 })
 

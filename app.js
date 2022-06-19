@@ -11,6 +11,7 @@ require('./models/Postagem')
 const Postagem = mongoose.model('postagens')
 require('./models/Categoria')
 const Categoria = mongoose.model('categorias')
+const usuarios = require('./routes/usuario')
 
 // Configurações
 
@@ -83,8 +84,8 @@ app.get('/categorias', (req, res) => {
 app.get('/categorias/:slug', (req, res) => {
     Categoria.findOne({ slug: req.params.slug }).lean().then((categoria) => {
         if (categoria) {
-            Postagem.find({ categoria: categoria._id }).lean().then((postagens) =>{
-                res.render('categorias/postagens', {postagens: postagens, categoria: categoria }) 
+            Postagem.find({ categoria: categoria._id }).lean().then((postagens) => {
+                res.render('categorias/postagens', { postagens: postagens, categoria: categoria })
             }).catch((err) => {
                 req.flash('error_msg', 'Houve um erro interno ao listar os posts!.')
                 res.redirect('/')
@@ -100,6 +101,7 @@ app.get('/categorias/:slug', (req, res) => {
 })
 
 app.use('/admin', admin)
+app.use('/usuarios', usuarios)
 
 // Outros
 const PORT = 8081

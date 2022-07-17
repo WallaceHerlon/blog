@@ -4,7 +4,7 @@ Curso prático pelo Youtuber [Victor Lima](https://www.youtube.com/watch?v=LLqq6
 
 Node.js permite a execução de códigos Javascript fora de um navegador web.
 
-<img src="to_readme/blog.png">
+<img src="to_readme/Blog.png">
 <br><br>
 <img src="to_readme/login.png">
 <br><br>

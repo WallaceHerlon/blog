@@ -53,8 +53,6 @@ app.get('/:slug', (req, res) => {
     })
 })
 
-
-
 app.listen(8080, () => {
     console.log('o servidor está rodando!')
 })

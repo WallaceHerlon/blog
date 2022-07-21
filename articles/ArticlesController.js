@@ -108,7 +108,7 @@ router.get('/articles/page/:num', (req, res) => {
         }
 
         var result = {
-            next: next, articles: articles
+            page: parseInt(page), next: next, articles: articles
         }
 
         Category.findAll().then(categories => {

@@ -39,18 +39,6 @@ app.use('/', categoriesController)
 app.use('/', articlesController)
 app.use('/', usersController)
 
-app.get('/session', (req, res) => {
-    req.session.treinamento = 'Formação Node.js'
-    req.session.ano = '2022'
-})
-
-app.get('/leitura', (req, res) => {
-    res.json({
-        treinamento: req.session.treinamento,
-        ano: req.session.ano
-    })
-})
-
 app.get('/', (req, res) => {
     Article.findAll({
         order: [
